@@ -52,12 +52,14 @@ class Quiz extends Component {
     this.setState((currentState) => ({
       correctAnswers: currentState.correctAnswers + 1,
       answered: currentState.answered + 1,
+      answer: false,
     }));
   };
 
   handleIncorrectAnswer = () => {
     this.setState((currentState) => ({
       answered: currentState.answered + 1,
+      answer: false,
     }));
   };
 
