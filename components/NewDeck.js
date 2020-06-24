@@ -46,7 +46,10 @@ class NewDeck extends Component {
     const { title } = this.state;
 
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : null}
+        style={styles.container}
+      >
         <Text style={styles.title}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
