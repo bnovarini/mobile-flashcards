@@ -26,6 +26,4 @@ To get started developing right away:
 
 ## Tested platforms
 
-This project layout and functionality has been tested on iOS.
-
-Although its functionality works for Android, keyboard input seems to hide some components behind the Android top tab header.
+This project's layout and functionality has been tested on both iOS and Android.
