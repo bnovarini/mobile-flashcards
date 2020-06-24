@@ -15,7 +15,7 @@ It creates a simple frontend in React Native to create flashcards for your study
 - Users also receive a daily local notification to reinforce their study habits.
 
 Screenshot of the deck list view:
-![Deck list view screenshot](TBD)
+![Deck list view screenshot](https://user-images.githubusercontent.com/49925472/85502939-7a5fde80-b5b6-11ea-8ae5-eadfc3dbc8c3.png)
 
 ## Getting started
 
