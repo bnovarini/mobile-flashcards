@@ -5,6 +5,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import { purple } from "../utils/colors";
 import { addCardToDeck } from "../utils/api";
@@ -56,7 +57,10 @@ class NewQuestion extends Component {
     });
 
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : null}
+        style={styles.container}
+      >
         <TextInput
           style={styles.input}
           placeholder="Insert question"

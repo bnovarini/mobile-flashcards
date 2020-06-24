@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { purple, white, gray } from "../utils/colors";
 import { connect } from "react-redux";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 
 class Quiz extends Component {
   state = {
@@ -35,6 +36,9 @@ class Quiz extends Component {
       this.setState(() => ({
         shuffledQuestions,
       }));
+
+      this.state.answered.length === this.state.shuffledQuestions.length &&
+        clearLocalNotification().then(setLocalNotification);
     }
   }
 

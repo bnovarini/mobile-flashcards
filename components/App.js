@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Component } from "react";
 import "react-native-gesture-handler";
 import { Platform, StyleSheet, Text, View, StatusBar } from "react-native";
 import Constants from "expo-constants";
@@ -13,6 +13,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { purple, white } from "../utils/colors";
+import { setLocalNotification } from "../utils/helpers";
 import NewQuestion from "./NewQuestion";
 import NewDeck from "./NewDeck";
 import Deck from "./Deck";
@@ -111,15 +112,21 @@ const MainNav = () => (
   </Stack.Navigator>
 );
 
-export default function App() {
-  return (
-    <Provider store={createStore(reducer, middleware)}>
-      <View style={{ flex: 1 }}>
-        <NavigationContainer>
-          <MyStatusBar backgroundColor={purple} barStyle="light-content" />
-          <MainNav />
-        </NavigationContainer>
-      </View>
-    </Provider>
-  );
+export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
+  render() {
+    return (
+      <Provider store={createStore(reducer, middleware)}>
+        <View style={{ flex: 1 }}>
+          <NavigationContainer>
+            <MyStatusBar backgroundColor={purple} barStyle="light-content" />
+            <MainNav />
+          </NavigationContainer>
+        </View>
+      </Provider>
+    );
+  }
 }

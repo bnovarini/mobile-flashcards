@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { purple } from "../utils/colors";
-import { saveDeckTitle, newDeckObject, clearAll } from "../utils/api";
+import { saveDeckTitle, newDeckObject } from "../utils/api";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
 

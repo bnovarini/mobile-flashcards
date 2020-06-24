@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList, Animated } from "react-native";
 import { white } from "../utils/colors";
 import { getDecks } from "../utils/api";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -8,34 +8,50 @@ import { connect } from "react-redux";
 
 class DeckList extends Component {
   state = {
-    ready: false,
+    bounceValue: new Animated.Value(1),
   };
 
   componentDidMount() {
     const { dispatch } = this.props;
 
-    getDecks()
-      .then((decks) => dispatch(receiveDecks(decks)))
-      .then(() => this.setState(() => ({ ready: true })));
+    getDecks().then((decks) => dispatch(receiveDecks(decks)));
   }
+
+  animateBeforeNavigating = (bounceValue, item) => {
+    Animated.sequence([
+      Animated.timing(bounceValue, { duration: 100, toValue: 1.2 }),
+      Animated.spring(bounceValue, { toValue: 1, friction: 10 }),
+    ]).start(() =>
+      this.props.navigation.navigate("Deck", {
+        title: item,
+      })
+    );
+  };
 
   render() {
     const { decks } = this.props;
+    const { bounceValue } = this.state;
+
     return (
       <View>
         <Text style={styles.title}>My Decks</Text>
         <FlatList
           data={Object.keys(decks)}
           renderItem={({ item }) => (
-            <View style={styles.item}>
+            <View style={styles.item} key={item}>
               <TouchableOpacity
-                onPress={() =>
-                  this.props.navigation.navigate("Deck", {
-                    title: item,
-                  })
-                }
+                onPress={() => {
+                  this.animateBeforeNavigating(bounceValue, item);
+                }}
               >
-                <Text style={styles.deckHeader}>{item}</Text>
+                <Animated.Text
+                  style={[
+                    styles.deckHeader,
+                    { transform: [{ scale: bounceValue }] },
+                  ]}
+                >
+                  {item}
+                </Animated.Text>
                 <Text style={styles.deckSubHeader}>
                   {decks[item] && decks[item].questions
                     ? decks[item].questions.length === 1
