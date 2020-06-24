@@ -63,6 +63,30 @@ class Quiz extends Component {
     }));
   };
 
+  handleQuizRestart = () => {
+    this.setState(() => ({
+      hasQuestions: false,
+      correctAnswers: 0,
+      answered: 0,
+      shuffledQuestions: [],
+      answer: false,
+    }));
+    this.componentDidMount();
+  };
+
+  handleGoBack = () => {
+    this.setState(() => ({
+      hasQuestions: false,
+      correctAnswers: 0,
+      answered: 0,
+      shuffledQuestions: [],
+      answer: false,
+    }));
+    this.props.navigation.navigate("Deck", {
+      title: this.props.deck.title,
+    });
+  };
+
   renderQuiz = ({ correctAnswers, answered, shuffledQuestions, answer }) => (
     <View style={styles.container}>
       <Text style={styles.subtitle}>
@@ -77,10 +101,7 @@ class Quiz extends Component {
           <Text
             style={[
               styles.cardInfo,
-              {
-                flex: 10,
-                color: answer ? gray : purple,
-              },
+              { flex: 10, color: answer ? gray : purple },
             ]}
           >
             {answer
@@ -129,6 +150,18 @@ class Quiz extends Component {
               {correctAnswers === 1 ? "answer" : "answers"} right out of{" "}
               {answered} ({(correctAnswers / answered) * 100}%)
             </Text>
+            <TouchableOpacity
+              style={styles.submitButton}
+              onPress={this.handleQuizRestart}
+            >
+              <Text style={styles.submitButtonText}> Restart Quiz </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.quizButton}
+              onPress={this.handleGoBack}
+            >
+              <Text style={styles.quizButtonText}> Back to Deck </Text>
+            </TouchableOpacity>
           </View>
         );
       } else {
