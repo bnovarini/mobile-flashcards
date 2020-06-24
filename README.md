@@ -21,7 +21,7 @@ To get started developing right away:
 - install all project dependencies with `yarn install`
 - start the development server with `yarn start`
 
-## Tested platforms and devices
+## Tested platforms
 
 This project layout and functionality has been tested on iOS.
 
