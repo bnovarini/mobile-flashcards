@@ -5,11 +5,14 @@ This project is part of my Udacity React Native course.
 It creates a simple frontend in React Native to create flashcards for your study subjects.
 
 - Users can:
+
   - Create a new deck of flashcards, which can be helpful when categorizing your subjects to study
   - View all their created decks
   - Add cards to their decks
   - Start quizzes on their deck and track how many answers they are getting right
   - If you don't remember the answer to a question, you can always flip the flashcard to find out
+
+- Users also receive a daily local notification to reinforce their study habits.
 
 Screenshot of the deck list view:
 ![Deck list view screenshot](TBD)
